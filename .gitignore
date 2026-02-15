@@ -1,0 +1,18 @@
+# Python virtual environments
+.venv/
+venv/
+
+# PyCharm files
+.idea/
+
+# Bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment files
+.env
+
+# Sensitive data
+emails.txt
