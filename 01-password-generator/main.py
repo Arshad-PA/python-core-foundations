@@ -2,6 +2,8 @@ from tkinter import *
 import random
 import string
 from tkinter import Button
+from tkinter import messagebox
+from tkinter import END
 
 window = Tk()
 window.title("Password Manager")
@@ -11,6 +13,7 @@ Label(text="Website:", bg="white").grid(row=1, column=0)
 entry = Entry(width=35)
 entry.grid(row=1, column=1, columnspan=2)
 entry.focus()
+# generate password fn
 def generate_password():
     letters = string.ascii_letters
     numbers = string.digits
@@ -18,6 +21,24 @@ def generate_password():
     password = ''.join(random.choice(letters + numbers + symbols) for _ in range(12))
     entry3.delete(0, END)
     entry3.insert(0, password)
+
+# Save Function with Messagebox
+def email_value():
+    website_name = entry.get()
+    emails = entry2.get()
+    passwords = entry3.get()
+
+    save = messagebox.askyesno(title='Save', message='Do you want to save this?')
+    if save:
+        if website_name == "" or passwords == "":
+            messagebox.showwarning(title="Oops", message="Please don't leave fields empty!")
+            return
+        with open("emails.txt", "a") as file:
+            file.write(f"Website name : {website_name} | Email id : {emails} | Password : {passwords}\n")
+        entry.delete(0, END)
+        entry2.delete(0, END)
+        entry3.delete(0, END)
+        entry.focus()
 
 
 # Email
