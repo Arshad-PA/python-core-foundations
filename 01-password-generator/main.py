@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import Canvas, PhotoImage
 import random
 import string
 from tkinter import Button
@@ -8,8 +9,15 @@ from tkinter import END
 window = Tk()
 window.title("Password Manager")
 window.configure(padx=20, pady=20, bg="white")
+
+canvas = Canvas(width=200, height=200, highlightthickness=0)
+img = PhotoImage(file='img/logo.png')
+canvas.create_image(100, 100, image=img)
+canvas.grid(row=0, column=1, columnspan=2)
+
 # Website
-Label(text="Website:", bg="white").grid(row=1, column=0)
+website = Label(text="Website:", bg="white")
+website.grid(row=1, column=0)
 entry = Entry(width=35)
 entry.grid(row=1, column=1, columnspan=2)
 entry.focus()
@@ -39,6 +47,7 @@ def email_value():
         entry2.delete(0, END)
         entry3.delete(0, END)
         entry.focus()
+
 
 
 # Email
